@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <script src="https://kit.fontawesome.com/e8b6f3f0bb.js" crossorigin="anonymous"></script>
+    <title>{{user.first_name}}'s Messages | TunasOnly.com</title>
+</head>
+<body class="d-flex flex-column h-100" cz-shortcut-listen="true">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+            <a class="navbar-brand" href="/dashboard"><img src="../static/img/tunas-only-logo-mast.svg" height="70" width="200" border-style="none"></a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/edit-profile">Edit Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/messageboard">Messages</a>
+                    </li>
+                    <li class="nav-item nav-link px-2">Welcome, {{user.first_name}} &nbsp;</li>
+                    <li class="nav-item"><a href="/logout" class="nav-link px-2">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main role="main">
+    <div class="container text-center mt-5">
+        <div class="row d-flex justify-content-between">
+            <div class="col-8">
+                <div class="w-100 m-auto">
+                    <h1 class=" mb-3 fw-normal">{{user.first_name}} has {{messages|length}} Messages:</h1>
+                        {% for message in messages %}
+                        <div class="col-6 rounded-3 border-dark border p-3">
+                                <div class="py-3">
+                                    <h4 class="my-0 fw-normal">Message from {{message.sender}} sent:</h4>
+                                    <p>(sent {{message.time_span()}})</p>
+                                </div>
+                                <div class="chat">   
+                                    <div class="chat-history">
+                                        <ul class="chat-ul">
+                                            <ul class="chat-ul">
+                                                <li>
+                                                    <div class="message-data">
+                                                        <span class="message-data-name"><i class="fa fa-circle you"></i> You</span>
+                                                    </div>
+                                                    <div class="message you-message">
+                                                    A new client?!?! I would love to help them, but where are we going to find the time?
+                                                    </div>
+                                                </li>
+                                                {% for message in messages %}
+                                                    {% for message in messages|dictsort:"subject" %}
+                                                <li class="clearfix">
+                                                    <div class="message-data align-right">
+                                                        <span class="message-data-name"><i class="fa fa-circle me"></i>{{message.sender}} (sent {{message.time_span()}})</span> 
+                                                    </div>
+                                                    <div class="message me-message float-right">{{message.message}}</div>
+                                                </li>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <form class="form-signin" action="/send-message" method="post">
+                                <div class="input-group mt-4">
+                                    <div class="input-group-text">Your Message:</div>
+                                    <textarea type="text" name="message" class="form-control" required></textarea>
+                                </div>
+                                    <input type="hidden" name="subject" value="{{message.subject}}">
+                                    <input type="hidden" name="recipient_id" value="{{message.sender_id}}">
+                                    <input type="hidden" name="sender_id" value="{{message.recipient_id}}">
+                                    <button class="btn btn-sm btn-primary mt-3" type="submit">Reply to Message</button>
+                                </form>
+                                <a href="/destroy/{{message.id}}" class="btn btn-sm btn-warning"><strong>Delete</strong> <i class="fa-solid fa-trash-can fa-xl"></i></a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-signin w-100 m-auto">
+                    <h3 class=" mb-3 fw-normal">Start a New Conversation:</h3>
+                        {% for one_user in all_users %}
+                        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                            <div class="card-header py-3 text-white bg-primary border-primary">
+                                <h5 class="my-0 fw-normal">Send a New Message to {{one_user.first_name}}:</h5>
+                            </div>
+                            <div class="card-body">
+                                <form class="form-signin" action="/send-message" method="post">
+                                    <div class="input-group">
+                                        <div class="input-group-text">Subject:</div>
+                                        <textarea type="text" name="subject" class="form-control" required></textarea>
+                                    </div>
+                                    <div class="input-group mt-4">
+                                        <div class="input-group-text">Your Message:</div>
+                                        <textarea type="text" name="message" class="form-control" required></textarea>
+                                    </div>
+                                    <input type="hidden" name="recipient_id" value="{{one_user.id}}">
+                                    <input type="hidden" name="sender_id" value="{{user.id}}">
+
+                                    <button class="btn btn-sm btn-primary mt-3" type="submit">Send Message</button>
+                                </form>
+                            </div>
+                        </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container clearfix">
+            <div class="chat">   
+                <div class="chat-history">
+                <ul class="chat-ul">
+                    <li>
+                        <div class="message-data">
+                            <span class="message-data-name"><i class="fa fa-circle you"></i> You</span>
+                        </div>
+                        <div class="message you-message">
+                        A new client?!?! I would love to help them, but where are we going to find the time?
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                    {% for message in messages %}
+                    <div class="message-data align-right">
+                        <span class="message-data-name"><i class="fa fa-circle me"></i>{{message.sender}} (sent {{message.time_span()}})</span> 
+                    </div>
+                    <div class="message me-message float-right">{{message.message}}</div>
+                    {% endfor %}
+                    </li>
+                </ul>
+                </div> <!-- end chat-history -->
+            </div> <!-- end chat -->
+    </div>
+    <footer class="bg-secondary text-center text-secondary">
+        <div class="container p-4 pb-0">
+            <section class="mb-4">
+                <a class="btn btn-outline-secondary btn-floating m-1" href="#" role="button"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-outline-secondary btn-floating m-1" href="#" role="button"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-outline-secondary btn-floating m-1" href="#" role="button"><i class="fab fa-instagram"></i></a>
+            </section>
+        </div>
+        <div class="text-center p-3 bg-primary text-white">
+            ©2022 Tunas Only, Inc. <a class="text-white" href="#">TunasOnly.com</a>
+        </div>
+    </footer>
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

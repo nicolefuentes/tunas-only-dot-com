@@ -1,0 +1,537 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+.home-background {
+    background: url('../img/home_background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-top: -100px;
+}
+/* Section - Hero */
+.hero-logo {
+    max-height: 240px;
+}
+.hero-bg {
+    position: relative;
+    background-color: black;
+    height: 75vh;
+    max-height: 30rem;
+    width: 100%;
+    overflow: hidden;
+}
+.hero-bg video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+.hero-bg .container {
+    position: relative;
+    z-index: 2;
+}
+.hero-bg .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+  /* Media Query for devices withi coarse pointers and no hover functionality */
+  /* This will use a fallback image instead of a video for devices that commonly do not support the HTML5 video element */
+
+@media (pointer: coarse) and (hover: none) {
+    .hero-bg {
+        background: url('../img/tuna-ocean.jpg') black no-repeat center center scroll;
+    }
+    .hero-bg video {
+        display: none;
+    }
+}
+.gradient-background-login {
+    /* fallback for old browsers */
+    background: #a18cd1;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(45deg,rgba(250,179,142, 0.6),rgba(231,113,125, 0.6) 100%);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(45deg,rgba(250,179,142, 0.6),rgba(231,113,125, 0.6) 100%);
+    
+    height: 100vh;
+}
+.sub-text {
+    color: #005a6c;
+    font-weight: 700;
+}
+.logo-font {
+    font-family: 'Quicksand', sans-serif;
+}
+.bd-placeholder-img-albacore {
+    background-image: url("../img/albacore.jpeg");
+    position: relative;
+    background-position: center center;
+    display: inline-block;
+    height: 8vw;
+    background-size: cover!important;
+}
+.bd-placeholder-img-bluefin {
+    background-image: url("../img/bluefin.jpeg");
+    position: relative;
+    background-position: center center;
+    display: inline-block;
+    height: 8vw;
+    background-size: cover!important;
+}
+.bd-placeholder-img-bigeye {
+    background-image: url("../img/bigyeye.jpg");
+    position: relative;
+    background-position: center center;
+    display: inline-block;
+    height: 8vw;
+    background-size: cover!important;
+}
+.bd-placeholder-img-skipjack {
+    background-image: url("../img/skipjack.jpg");
+    position: relative;
+    background-position: center center;
+    display: inline-block;
+    height: 8vw;
+    background-size: cover!important;
+}
+.bd-placeholder-img-yellowfin {
+    background-image: url("../img/yellowfin.jpeg");
+    position: relative;
+    background-position: center center;
+    display: inline-block;
+    height: 8vw;
+    background-size: cover!important;
+}
+.user-profile-bg{
+    background-image: url("../img/max-profile.jpg");
+    position: relative;
+    background-position: center center;
+    display: inline-block;
+    width: 10vw;
+    background-size: cover!important;
+    height: 10vw;
+    border-radius: 50%;
+}
+.user-profile-albacore{
+    background-image: url("../img/albacore.jpeg");
+    position: relative;
+    background-position: center center;
+    display: inline-block;
+    width: 10vw;
+    background-size: cover!important;
+    height: 10vw;
+    border-radius: 50%;
+}
+.user-profile-bluefin{
+    background-image: url("../img/bluefin.jpeg");
+    position: relative;
+    background-position: center center;
+    display: inline-block;
+    width: 10vw;
+    background-size: cover!important;
+    height: 10vw;
+    border-radius: 50%;
+}
+.user-profile-bigeye{
+    background-image: url("../img/bigyeye.jpg");
+    position: relative;
+    background-position: center center;
+    display: inline-block;
+    width: 10vw;
+    background-size: cover!important;
+    height: 10vw;
+    border-radius: 50%;
+}
+.user-profile-skipjack{
+    background-image: url("../img/skipjack.jpg");
+    position: relative;
+    background-position: center center;
+    display: inline-block;
+    width: 10vw;
+    background-size: cover!important;
+    height: 10vw;
+    border-radius: 50%;
+}
+.user-profile-yellowfin{
+    background-image: url("../img/yellowfin.jpeg");
+    position: relative;
+    background-position: center center;
+    display: inline-block;
+    width: 10vw;
+    background-size: cover!important;
+    height: 10vw;
+    border-radius: 50%;
+}
+@media screen and (max-width: 992px) {
+    .hero-bg {
+        position: relative;
+        background-color: black;
+        height: 75vh;
+        max-height: 20rem;
+        width: 100%;
+        overflow: hidden;
+    }
+    .hero-logo {
+        max-height: 220px;
+    }
+    .bd-placeholder-img-albacore {
+        background-image: url("../img/albacore.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 8vw;
+        background-size: cover!important;
+    }
+    .bd-placeholder-img-bluefin {
+        background-image: url("../img/bluefin.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 8vw;
+        background-size: cover!important;
+    }
+    .bd-placeholder-img-bigeye {
+        background-image: url("../img/bigyeye.jpg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 8vw;
+        background-size: cover!important;
+    }
+    .bd-placeholder-img-skipjack {
+        background-image: url("../img/skipjack.jpg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 8vw;
+        background-size: cover!important;
+    }
+    .bd-placeholder-img-yellowfin {
+        background-image: url("../img/yellowfin.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 8vw;
+        background-size: cover!important;
+    }
+    .user-profile-bg{
+        background-image: url("../img/max-profile.jpg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        width: 20vw;
+        background-size: cover!important;
+        height: 20vw;
+        border-radius: 50%;
+    }
+    .user-profile-albacore{
+        background-image: url("../img/albacore.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        width: 20vw;
+        background-size: cover!important;
+        height: 20vw;
+        border-radius: 50%;
+    }
+    .user-profile-bluefin{
+        background-image: url("../img/bluefin.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        width: 20vw;
+        background-size: cover!important;
+        height: 20vw;
+        border-radius: 50%;
+    }
+    .user-profile-bigeye{
+        background-image: url("../img/bigyeye.jpg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        width: 20vw;
+        background-size: cover!important;
+        height: 20vw;
+        border-radius: 50%;
+    }
+    .user-profile-skipjack{
+        background-image: url("../img/skipjack.jpg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        width: 20vw;
+        background-size: cover!important;
+        height: 20vw;
+        border-radius: 50%;
+    }
+    .user-profile-yellowfin{
+        background-image: url("../img/yellowfin.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        width: 20vw;
+        background-size: cover!important;
+        height: 20vw;
+        border-radius: 50%;
+    }
+    .bd-placeholder-img-albacore {
+        background-image: url("../img/albacore.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 20vw;
+        background-size: cover!important;
+    }
+    .bd-placeholder-img-bluefin {
+        background-image: url("../img/bluefin.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 20vw;
+        background-size: cover!important;
+    }
+    .bd-placeholder-img-bigeye {
+        background-image: url("../img/bigyeye.jpg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 20vw;
+        background-size: cover!important;
+    }
+    .bd-placeholder-img-skipjack {
+        background-image: url("../img/skipjack.jpg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 20vw;
+        background-size: cover!important;
+    }
+    .bd-placeholder-img-yellowfin {
+        background-image: url("../img/yellowfin.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 20vw;
+        background-size: cover!important;
+    }
+}
+@media screen and (max-width:767px){
+    .hero-bg {
+        position: relative;
+        background-color: black;
+        height: 75vh;
+        max-height: 20rem;
+        width: 100%;
+        overflow: hidden;
+    }
+    .user-profile-bg{
+        background-image: url("../img/max-profile.jpg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        width: 30vw;
+        background-size: cover!important;
+        height: 30vw;
+        border-radius: 50%;
+    }
+    .user-profile-albacore{
+        background-image: url("../img/albacore.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        width: 30vw;
+        background-size: cover!important;
+        height: 30vw;
+        border-radius: 50%;
+    }
+    .user-profile-bluefin{
+        background-image: url("../img/bluefin.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        width: 30vw;
+        background-size: cover!important;
+        height: 30vw;
+        border-radius: 50%;
+    }
+    .user-profile-bigeye{
+        background-image: url("../img/bigyeye.jpg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        width: 30vw;
+        background-size: cover!important;
+        height: 30vw;
+        border-radius: 50%;
+    }
+    .user-profile-skipjack{
+        background-image: url("../img/skipjack.jpg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        width: 30vw;
+        background-size: cover!important;
+        height: 30vw;
+        border-radius: 50%;
+    }
+    .user-profile-yellowfin{
+        background-image: url("../img/yellowfin.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        width: 30vw;
+        background-size: cover!important;
+        height: 30vw;
+        border-radius: 50%;
+    }
+    .bd-placeholder-img-albacore {
+        background-image: url("../img/albacore.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 30vw;
+        background-size: cover!important;
+    }
+    .bd-placeholder-img-bluefin {
+        background-image: url("../img/bluefin.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 30vw;
+        background-size: cover!important;
+    }
+    .bd-placeholder-img-bigeye {
+        background-image: url("../img/bigyeye.jpg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 30vw;
+        background-size: cover!important;
+    }
+    .bd-placeholder-img-skipjack {
+        background-image: url("../img/skipjack.jpg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 30vw;
+        background-size: cover!important;
+    }
+    .bd-placeholder-img-yellowfin {
+        background-image: url("../img/yellowfin.jpeg");
+        position: relative;
+        background-position: center center;
+        display: inline-block;
+        height: 30vw;
+        background-size: cover!important;
+    }
+}
+/* chat */
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+.chat .chat-history {
+    padding: 30px 30px 20px;
+    border-bottom: 2px solid white;
+}
+.chat .chat-history .message-data {
+    margin-bottom: 15px;
+}
+.chat .chat-history .message-data-time {
+    color: #a8aab1;
+    padding-left: 6px;
+}
+.chat .chat-history .message {
+    color: white;
+    padding: 18px 20px;
+    line-height: 26px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    width: 90%;
+    position: relative;
+}
+.chat .chat-history .message:after {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    border-width: 0 15px 15px;
+    border-style: solid;
+    border-color: #CCDBDC transparent;
+    display: block;
+    width: 0;
+}
+.chat .chat-history .you-message {
+    background: #CCDBDC;
+    color:#003366;
+}
+.chat .chat-history .me-message {
+    background: #E9724C;
+}
+.chat .chat-history .me-message:after {
+    border-color: #E9724C transparent;
+    right: 20px;
+    top: -15px;
+    left: auto;
+    bottom:auto;
+}
+.chat .chat-message {
+    padding: 30px;
+}
+.chat .chat-message .fa-file-o, .chat .chat-message .fa-file-image-o {
+    font-size: 16px;
+    color: gray;
+    cursor: pointer;
+}
+
+.chat-ul li{
+    list-style-type: none;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.float-right {
+    float: right;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.you {
+    color: #CCDBDC;
+}
+
+.me {
+    color: #E9724C;
+}
+.border-5 {
+    box-sizing: border-box;
+    border-width: 10px solid black !important;
+  }

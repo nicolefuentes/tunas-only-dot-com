@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- NINJA BONUS: Use a CSS framework to style your form -->
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <script src="https://kit.fontawesome.com/e8b6f3f0bb.js" crossorigin="anonymous"></script>
+    
+    <title>{{user_profile.first_name}}'s Profile | TunasOnly.com</title>
+</head>
+<body class="d-flex flex-column h-100" cz-shortcut-listen="true">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+            <a class="navbar-brand" href="/dashboard"><img src="../static/img/tunas-only-logo-mast.svg" height="70" width="200" border-style="none"></a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/edit-profile">Edit Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/messageboard">Messages</a>
+                    </li>
+                    <li class="nav-item nav-link px-2">Welcome, {{user.first_name}} &nbsp;</li>
+                    <li class="nav-item"><a href="/logout" class="nav-link px-2">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main role="main">
+        <div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-9 col-sm-12">
+                    <div class="px-4 py-5 my-5 text-center">
+                        <img class="user-profile-{{user_profile.user_type}} d-block mx-auto mb-4">
+                        <h1 class="display-5 fw-bold logo-font">{{user_profile.first_name}} {{user_profile.last_name}}</h1>
+                        <div class="col-lg-6 mx-auto">
+                            <p class="lead mb-1 sub-text">Joined on: {{user_profile.created_at.strftime('%B %d, %Y')}}</p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-8 align-self-center">
+                            <h4 class="logo-font sub-text"><i class="fa-solid fa-cake-candles"></i> Date of Birth:</h4>
+                            <p>{{user_profile.birthdate.strftime('%B %d, %Y')}}</p>
+                            <h4 class="logo-font sub-text"><i class="fa-solid fa-fish-fins"></i> I am a:</h4>
+                            <p>{{user_profile.user_type|title}}</p>
+                            <h4 class="logo-font sub-text"><i class="fa-solid fa-fish-fins"></i> Looking for a:</h4>
+                            <p>{{user_profile.looking_for|title}}</p>
+                            <h4 class="logo-font sub-text"><i class="fa-solid fa-book-open-cover"></i> Bio:</h4>
+                            <p>{{user_profile.bio}}</p>
+                            <a type="button" class="btn btn-primary btn-md px-4 gap-3 text-white mt-5" href="/dashboard"><i class="fa-solid fa-backward"></i> Back to Home </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-secondary text-center text-secondary">
+        <div class="container p-4 pb-0">
+            <section class="mb-4">
+                <a class="btn btn-outline-secondary btn-floating m-1" href="#" role="button"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-outline-secondary btn-floating m-1" href="#" role="button"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-outline-secondary btn-floating m-1" href="#" role="button"><i class="fab fa-instagram"></i></a>
+            </section>
+        </div>
+        <div class="text-center p-3 bg-primary text-white">
+            ©2022 Tunas Only, Inc. <a class="text-white" href="#">TunasOnly.com</a>
+        </div>
+    </footer>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

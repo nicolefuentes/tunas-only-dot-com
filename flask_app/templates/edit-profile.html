@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- NINJA BONUS: Use a CSS framework to style your form -->
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <script src="https://kit.fontawesome.com/e8b6f3f0bb.js" crossorigin="anonymous"></script>
+    <title>Edit User | TunasOnly.com</title>
+</head>
+<body class="text-center" cz-shortcut-listen="true">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+            <a class="navbar-brand" href="/dashboard"><img src="../static/img/tunas-only-logo-mast.svg" height="70" width="200" border-style="none"></a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/edit-profile">Edit Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/messageboard">Messages</a>
+                    </li>
+                    <li class="nav-item nav-link px-2">Welcome, {{user.first_name}} &nbsp;</li>
+                    <li class="nav-item"><a href="/logout" class="nav-link px-2">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main role="main">
+        <div class="container text-center ">
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-6 col-sm-10 mt-5">
+                        <div class="form-signin w-100 mt-5 mb-5">
+                            <form class="p-4 form-signin card bg-primary rounded-3 shadow-sm" action="/user/update" method="POST">
+                                <img class="user-profile-{{user.user_type}} d-block mx-auto mb-4">
+                                <h1 class="h3 mb-3 fw-normal logo-font text-white">Update {{user.first_name}}'s profile:</h1>
+                                {% with messages = get_flashed_messages(category_filter=['user_update']) %}     <!-- declare a variable called messages -->
+                                    {% if messages %}                            <!-- check if there are any messages -->
+                                        {% for message in messages %}            <!-- loop through the messages -->
+                                            <div class="alert alert-danger" role="alert">{{message}}</div>                 
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endwith %}
+                                    <input type="hidden" value="{{user.id}}">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" name="first_name" id="first_name" value="{{user.first_name}}">
+                                        <label for="first_name" class="text-white mt-1">First Name</label>
+                                    </div>
+                                    <div class="form-floating mt-3">
+                                        <input type="text" class="form-control" name="last_name" id="last_name" value="{{user.last_name}}">
+                                        <label for="last_name" class="text-white mt-1">Last Name</label>
+                                    </div>
+                                    <div class="form-floating mt-3">
+                                        <input type="email" class="form-control" name="email" id="email" value="{{user.email}}">
+                                        <label for="email" class="text-white mt-1">Email address</label>
+                                    </div>
+                                    <div class="input-group mt-3">
+                                        <label for="birthdate" class="input-group-text"><strong>Date of Birth</strong></label>
+                                        <input type="date" id="birthdate" name="birthdate" value="{{user.birthdate}}">
+                                    </div>
+                                    <div class="input-group mt-3">
+                                        <span for="user_type" aria-required="true"><strong class="text-white">I am a: </strong>
+                                            <select class="form-group mt-3" id="user_type" name="user_type">
+                                                <option selected value="{{user.user_type}}">{{user.user_type|title}}</option>
+                                                <option name="user_type" value="albacore">Albacore</option>
+                                                <option name="user_type" value="bigeye">Bigeye</option>
+                                                <option name="user_type" value="bluefin">Bluefin</option>
+                                                <option name="user_type" value="skipjack">Skipjack</option>
+                                                <option name="user_type" value="yellowfin">Yellowfin</option>
+                                            </select>
+                                        </span>&nbsp;
+                                        <span for="looking_for" aria-required="true"><strong class="text-white"> Looking for:</strong>
+                                            <select class="form-group mt-3" id="looking_for" name="looking_for">
+                                                <option selected value="{{user.looking_for}}">{{user.looking_for|title}}</option>
+                                                <option name="looking_for" value="albacore">Albacore</option>
+                                                <option name="looking_for" value="bigeye">Bigeye</option>
+                                                <option name="looking_for" value="bluefin">Bluefin</option>
+                                                <option name="looking_for" value="skipjack">Skipjack</option>
+                                                <option name="looking_for" value="yellowfin">Yellowfin</option>
+                                                <option name="looking_for" value="i'm not picky!">I'm not picky!</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                    <div class="input-group mt-3">
+                                        <span for="bio" class="input-group-text"><strong>User Bio (optional)</strong></span>
+                                        <textarea name="bio" class="form-control" aria-label="With textarea" value="{{user.bio}}">{{user.bio}}</textarea>
+                                    </div>
+                                    <button class="w-100 btn btn-lg btn-light mt-5" value="Update User" type="submit">Submit Updates</button>
+                            </form>
+                            <button class="w-100 btn btn-lg btn-light mt-5" href="/delete-profile/{{user.id}}" type="submit">I found the one! Delete my profile.</button>
+                        </div>
+                </div>
+                <div class="col-lg-4 col-sm-8 mt-5">
+                    <div class="form-signin w-100 mt-5 mb-5">
+                        <form class="p-4 form-signin card bg-light rounded-3 shadow-sm" action="/testimonial" method="POST">
+                            <h5 class="h5 fw-normal logo-font">Enjoying TunasOnly.com?</h5>
+                            <p class="mb-3 fw-normal logo-font">Leave us a review!</p>
+                                <input type="hidden" name="user_id" value="{{user.id}}">
+                                <div class="input-group mt-3 mb-3">
+                                    <span for="testimonial" class="input-group-text"><strong>Testimonial</strong></span>
+                                    <textarea name="testimonial" class="form-control" aria-label="With textarea" required"></textarea>
+                                </div>
+                                <p>Can we share this on our website?</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="yes" id="share" name="share">
+                                    <label class="form-check-label" for="share">
+                                        Yes!
+                                    </label>
+                                </div>
+                                <button class="w-100 btn btn-lg btn-light mt-5" value="Update User" type="submit">Sumbit my Testimonial</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-secondary text-center text-secondary">
+        <div class="container p-4 pb-0">
+            <section class="mb-4">
+                <a class="btn btn-outline-secondary btn-floating m-1" href="#" role="button"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-outline-secondary btn-floating m-1" href="#" role="button"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-outline-secondary btn-floating m-1" href="#" role="button"><i class="fab fa-instagram"></i></a>
+            </section>
+        </div>
+        <div class="text-center p-3 bg-primary text-white">
+            ©2022 Tunas Only, Inc. <a class="text-white" href="#">TunasOnly.com</a>
+        </div>
+    </footer>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>
